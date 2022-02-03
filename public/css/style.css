@@ -1,0 +1,17 @@
+.fa-red {
+    color: rgb(255, 103, 103);
+}
+
+.fa-red:hover {
+    color: rgb(255, 0, 0);
+}
+
+.btn-nav {
+    color: rgb(0, 0, 0); 
+    font-size: 1em;  
+}
+
+.btn-nav:hover {
+    color: rgb(203, 240, 253); 
+    font-size: 1.005em;   
+}

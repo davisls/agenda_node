@@ -20,7 +20,7 @@ exports.register = async (req, res, next) => {
         } else {
             req.flash('success', 'Seu contato foi cadastrado com sucesso');
             req.session.save( () => {
-                return res.redirect(`/contato/${contato.contato._id}`); 
+                return res.redirect('back'); 
             })
             return   
         }
@@ -46,8 +46,9 @@ exports.edit = async (req, res, next) => {
     
         if(contato.errors.length > 0){
             req.flash('errors', contato.errors);
-            req.session.save( () => {
-                return res.redirect('/contato'); 
+            req.session.save( async () => {
+                const cont = await Contato.findByID(req.params.id);
+                return res.redirect(`${cont._id}`); 
             })
             return
         } else {
@@ -72,6 +73,3 @@ exports.delete = async (req, res, next) => {
         return res.redirect('back'); 
     })
 }
-
-
-

@@ -62,8 +62,8 @@
                             <td><%= contato.sobrenome %></td>
                             <td><%= contato.tel %></td>
                             <td><%= contato.email %></td>
-                            <td><a href="/contato/<%=contato._id%>">Editar</a></td>
-                            <td><a href="/contato/delete/<%=contato._id%>">Excluir</a></td>                                                   
+                            <td><a href="/contato/edit/<%=contato._id%>"><i class="far fa-edit"></i></a></td>
+                            <td><a href="/contato/delete/<%=contato._id%>"><i class="fas fa-trash-alt fa-red"></i></a></td>                                                   
                         </tr>
                     <% }); %>    
                     </table>
