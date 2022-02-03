@@ -1,0 +1,77 @@
+<%- include('./includes/head') %>
+<%- include('./includes/nav') %>
+
+    <div class="container">
+
+    <% if(!user) { %>
+
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="text-center my-3">
+                    <h4 class="text-dark">Faça seu cadastro e utilize da nossa agenda por completo!</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <%- include('./includes/messages') %>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-4 mx-auto">
+
+                <div class="card my-4">
+                    <div class="card-header card-login-header">
+                        <div class="text-center my-3">
+                            <h4 class="text-dark">Faça seu cadastro agora:</h4>
+                        </div>
+                    </div>
+                    <div class="card-body card-login-body">
+                        <form action="/login/register" method="post" class="form-group ">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <label>Email:</label>
+                                <input class="form-control" type="text" name="email">
+                            <label>Senha:</label>
+                                <input class="form-control" type="password" name="senha">
+                            <button class="form-control mt-3 btn btn-dark" type="submit">Submit</button>
+                        </form>  
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <% } else { %> 
+
+        <div class="row">
+            <div class="col">
+                <h4 class="text-center mt-3 text-dark">Agenda</h4>
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <%- include('./includes/messages') %>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="responsive-table">
+                    <table class="table my-3">
+                    <% contatos.forEach(contato => { %>              
+                        <tr>
+                            <td><%= contato.nome %></td>
+                            <td><%= contato.sobrenome %></td>
+                            <td><%= contato.tel %></td>
+                            <td><%= contato.email %></td>
+                            <td><a href="/contato/<%=contato._id%>">Editar</a></td>
+                            <td><a href="/contato/delete/<%=contato._id%>">Excluir</a></td>                                                   
+                        </tr>
+                    <% }); %>    
+                    </table>
+                </div>
+            </div>
+        </div>
+    <% } %>     
+
+    </div>
+
+<%- include('./includes/footer') %>

@@ -1,0 +1,43 @@
+<%- include('./includes/head') %>
+<%- include('./includes/nav') %>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="text-center my-3">
+                    <h4 class="text-dark">Cadastre seus contatos abaixo:</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+
+                <%- include('./includes/messages') %>
+
+                <div class="card my-4">
+                    <div class="card-body card-login-body">
+                        <% if(contato._id) { %> 
+                            <form action="/contato/edit/<%=contato._id%>" method="post" class="form-group"> 
+                        <% } else { %> 
+                            <form action="/contato/register" method="post" class="form-group">    
+                        <% } %>       
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <label>Nome:</label>
+                                    <input value="<%= contato.nome %>" class="form-control" type="text" name="nome">
+                                <label>Sobrenome:</label>
+                                    <input value="<%= contato.sobrenome %>" class="form-control" type="text" name="sobrenome">
+                                <label>Email:</label>
+                                    <input value="<%= contato.email %>" class="form-control" type="text" name="email">
+                                <label>Telefone:</label>
+                                    <input value="<%= contato.tel %>" class="form-control" type="tel" name="telefone">
+                                <button class="form-control mt-4 btn btn-dark" type="submit">Submit</button>
+                            </form>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<%- include('./includes/footer') %>
